@@ -43,10 +43,5 @@ def get_row_sum(row: str, parse_method):
     :param parse_method: метод преобразования строки в число
     :return: сумма чисел в строке, разделенных пробелами, которых удалось преобразовать в число
     """
-    row_sum = 0
-    numbers = row.split()
-    for number in numbers:
-        number = try_parse(number, parse_method)
-        if number is not None:
-            row_sum += number
-    return row_sum
+    numbers = [try_parse(number, parse_method) for number in row.split()]
+    return sum([number for number in numbers if number is not None])
